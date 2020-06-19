@@ -1,5 +1,6 @@
 require('dotenv').config()
-const { kirimEmail } = require('../helper/email')
+const { sendEmailConfig } = require('../helper/email')
+const { validatorSendEmail } = require('../validator/emailValidator')
 
 const email = process.env.EMAIL;
 
@@ -9,15 +10,26 @@ exports.sendEmail = async (req, res) => {
         subject,
         html
     } = req.body;
+
+    const { errors, isValid } = validatorSendEmail(req.body)
+
+    if (!isValid) {
+        return res.status(500).send({
+            'status': 'error',
+            'messages': 'error',
+            'data': errors
+        });
+    }
+
     const templateEmail = {
         from: email, // sender address
         to,
         subject,
         html
     };
-
-    kirimEmail(templateEmail)
+    sendEmailConfig(templateEmail)
     return res.status(200).json({
         message: "Email Terkirim"
     })
+
 }

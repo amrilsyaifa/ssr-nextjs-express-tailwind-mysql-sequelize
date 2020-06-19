@@ -15,7 +15,7 @@ const transporter = nodemailer.createTransport({
 });
 
 
-exports.kirimEmail = dataEmail => {
+exports.sendEmailConfig = dataEmail => {
     transporter.sendMail(dataEmail)
         .then((info) => console.log(`email terkirim: ${info}`))
         .catch((err) => console.log(`error: `, err))
