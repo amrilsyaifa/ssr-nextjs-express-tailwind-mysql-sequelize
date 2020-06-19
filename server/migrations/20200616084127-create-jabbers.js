@@ -1,49 +1,38 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('users', {
+    return queryInterface.createTable('jabbers', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      username: {
+      jid: {
         allowNull: false,
-        type: Sequelize.STRING,
-        unique: true
-      },
-      email: {
-        allowNull: false,
-        type: Sequelize.STRING,
-        unique: true
-      },
-      phone_number: {
-        allowNull: false,
-        type: Sequelize.STRING,
-        unique: true
+        type: Sequelize.STRING
       },
       password: {
         allowNull: false,
         type: Sequelize.STRING
       },
-      id_card_number: {
-        type: Sequelize.STRING
-      },
-      full_name: {
-        type: Sequelize.STRING
-      },
-      address: {
+      host: {
         allowNull: false,
         type: Sequelize.STRING
       },
-      latitude: {
+      port: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
-      longitude: {
+      userId: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'users', // 'persons' refers to table name
+          key: 'id', // 'id' refers to column name in persons table
+        }
+        // references: 'users', // <<< Note, its table's name, not object name
+        // referencesKey: 'id' // <<< Note, its a column name
       },
       createdAt: {
         allowNull: false,
@@ -56,6 +45,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('users');
+    return queryInterface.dropTable('jabbers');
   }
 };

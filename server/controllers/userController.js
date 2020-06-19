@@ -1,8 +1,10 @@
 const model = require('../models')
+var bcrypt = require('bcrypt');
+var salt = bcrypt.genSaltSync(10);
 
 module.exports = {
     getAllUsers: (req, res) => {
-        model.users.findAll()
+        model.users.findAll({ include: [model.jabbers] })
             .then((datas) => {
                 res.status(200).send({
                     'status': 'success',
@@ -17,17 +19,23 @@ module.exports = {
     },
     postUser: (req, res) => {
         const {
-            name,
+            username,
             email,
-            gender,
-            phoneNumber
+            password,
+            phone_number,
+            id_card_number,
+            full_name,
+            address
         } = req.body;
-
+        var hashPassword = bcrypt.hashSync(password, salt)
         model.users.create({
-            name,
+            username,
             email,
-            gender,
-            phone_number: phoneNumber
+            password: hashPassword,
+            phone_number,
+            id_card_number,
+            full_name,
+            address
         }).then((data) => {
             res.status(200).send({
                 'status': 'success',
@@ -37,7 +45,7 @@ module.exports = {
         }).catch((error) => res.status(400).send({
             'status': 'error',
             'messages': error.message,
-            'data': {},
+            'data': error.errors,
         }))
     }
 }

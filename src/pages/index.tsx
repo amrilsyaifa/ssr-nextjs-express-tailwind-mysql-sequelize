@@ -14,7 +14,7 @@ export default function IndexPage({ names }) {
 }
 
 export async function getServerSideProps() {
-  const res = await api('/shows');
+  const res = await api('/users');
   return { props: { names: res } }
 }
 
