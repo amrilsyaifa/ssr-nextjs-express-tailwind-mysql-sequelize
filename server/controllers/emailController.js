@@ -8,7 +8,7 @@ exports.sendEmail = async (req, res) => {
     const {
         to,
         subject,
-        html
+        template
     } = req.body;
 
     const { errors, isValid } = validatorSendEmail(req.body)
@@ -25,7 +25,12 @@ exports.sendEmail = async (req, res) => {
         from: email, // sender address
         to,
         subject,
-        html
+        template,
+        context: {
+            name: 'Amril Syaifa Yasin',
+            url: 'https://www.google.com/'
+        }
+        // html,
     };
     sendEmailConfig(templateEmail)
     return res.status(200).json({

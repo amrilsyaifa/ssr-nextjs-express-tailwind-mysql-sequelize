@@ -1,10 +1,12 @@
+require('dotenv').config()
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcrypt');
-require('dotenv').config()
 
 const model = require('../models')
+const { sendEmailConfig } = require('../helper/email')
 var salt = bcrypt.genSaltSync(10);
 var secret = process.env.SECRET
+const emailFromENV = process.env.EMAIL;
 
 module.exports = {
     login: (req, res) => {
@@ -67,7 +69,7 @@ module.exports = {
                 'data': {}
             }));
     },
-    register: (req, res) => {
+    register: async (req, res) => {
         const {
             username,
             email,
@@ -81,38 +83,59 @@ module.exports = {
         } = req.body;
         var hashPassword = bcrypt.hashSync(password, salt)
 
-        model.users.create({
-            username,
-            email,
-            password: hashPassword,
-            phone_number,
-            id_card_number,
-            full_name,
-            address,
-            latitude,
-            longitude
-        }).then((data) => {
-            var token = jwt.sign({
-                id: data.id,
+        const emailRegistered = await model.users.findOne({ where: { email } });
+        if (emailRegistered === null) {
+            model.users.create({
                 username,
                 email,
-                password,
+                password: hashPassword,
                 phone_number,
                 id_card_number,
                 full_name,
-                address
-            }, secret);
-            res.status(200).send({
-                'status': 'success',
-                'messages': 'User berhasil ditambahkan',
-                'token': token,
-                'data': data,
+                address,
+                latitude,
+                longitude
+            }).then((data) => {
+                var token = jwt.sign({
+                    id: data.id,
+                    username,
+                    email,
+                    password,
+                    phone_number,
+                    id_card_number,
+                    full_name,
+                    address
+                }, secret);
+                res.status(200).send({
+                    'status': 'success',
+                    'messages': 'User berhasil ditambahkan',
+                    'token': token,
+                    'data': data,
+                });
+                const templateEmail = {
+                    from: emailFromENV, // sender address
+                    to: email,
+                    subject: "[Diingat] Konfirmasi Pendaftaran Akun Diingat.",
+                    template: 'register',
+                    context: {
+                        name: username,
+                        url: 'https://www.google.com/'
+                    }
+                };
+                sendEmailConfig(templateEmail)
+            }).catch((error) => res.status(400).send({
+                'status': 'error',
+                'messages': error.message,
+                'data': error.errors,
+            }))
+        } else {
+            res.status(400).send({
+                'status': 'error',
+                'messages': 'Email registered',
+                'data': '',
+            })
+        }
 
-            });
-        }).catch((error) => res.status(400).send({
-            'status': 'error',
-            'messages': error.message,
-            'data': error.errors,
-        }))
+
     }
 }
