@@ -2,7 +2,7 @@ require('dotenv').config()
 var jwt = require('jsonwebtoken');
 var secret = process.env.SECRET
 
-function getAuth(bearerHeader, callback) {
+function GetAuth(bearerHeader, callback) {
     if (bearerHeader) {
         const bearer = bearerHeader.split(' ');
         const bearerToken = bearer[1];
@@ -17,4 +17,4 @@ function getAuth(bearerHeader, callback) {
     }
 }
 
-module.exports = getAuth;
+module.exports = GetAuth;

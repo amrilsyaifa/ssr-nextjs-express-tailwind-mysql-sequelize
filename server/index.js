@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 
 const port = parseInt(process.env.PORT, 10) || 3000
 const APP_URL = process.env.APP_URL
-var { app } = require('./app')
+var { app } = require('./App')
 
 const handle = app.getRequestHandler()
 

@@ -2,7 +2,7 @@ require('dotenv').config()
 var jwt = require('jsonwebtoken');
 var secret = process.env.SECRET
 
-function verifyToken(req, res, next) {
+function VerifyToken(req, res, next) {
     const bearerHeader = req.headers['authorization'];
     if (bearerHeader) {
         const bearer = bearerHeader.split(' ');
@@ -17,7 +17,7 @@ function verifyToken(req, res, next) {
                 });
             }
             // if everything good, save to request for use in other routes
-            req.userId = decoded.id;
+            console.log('isi decoded ', decoded)
             next();
         });
     } else {
@@ -29,4 +29,4 @@ function verifyToken(req, res, next) {
     }
 }
 
-module.exports = verifyToken;
+module.exports = VerifyToken;

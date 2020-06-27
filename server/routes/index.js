@@ -1,25 +1,28 @@
 
 var express = require('express');
 var router = express.Router();
-var verifyToken = require('../middleware/verifyToken');
-const userController = require('../controllers/userController')
-const authenticationController = require('../controllers/authenticationController')
-const jabberController = require('../controllers/jabberController')
-const emailController = require('../controllers/emailController')
+var VerifyToken = require('../middleware/VerifyToken');
+const UserController = require('../controllers/UserController')
+const AuthenticationController = require('../controllers/AuthenticationController')
+const RolesController = require('../controllers/RolesController')
+const OTPController = require('../controllers/OTPController')
 
 
 // route here
-router.post('/register', authenticationController.register);
-router.post('/login', authenticationController.login);
+router.get('/users', VerifyToken, UserController.getAllUsers);
 
-router.get('/users', verifyToken, userController.getAllUsers);
-router.post('/user', verifyToken, userController.postUser);
+router.post('/register', AuthenticationController.register);
+router.post('/login-with-email', AuthenticationController.login_with_email);
+router.post('/login-with-phone', AuthenticationController.login_with_phone);
+router.post('/login-with-username', AuthenticationController.login_with_username);
 
-router.get('/jabbers', verifyToken, jabberController.getJabber);
-router.post('/jabber', verifyToken, jabberController.postJabber);
+router.post('/add-roles', RolesController.addRoles);
 
-router.post('/send-message', verifyToken, jabberController.sendMessage);
+router.get('/generate-otp-auth', VerifyToken, OTPController.generateOTP);
+router.post('/validate-otp-auth', VerifyToken, OTPController.validateOTP);
 
-router.post('/send-email', verifyToken, emailController.sendEmail);
+router.post('/check-user-active', VerifyToken, AuthenticationController.checkUserActive);
+
+
 
 module.exports = router;

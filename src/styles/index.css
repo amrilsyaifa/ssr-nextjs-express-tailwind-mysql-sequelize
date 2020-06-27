@@ -1,18 +1,29 @@
 @tailwind base;
 @tailwind components;
 
-.btn-blue {
-    @apply bg-blue-500 text-white font-bold py-2 px-4 rounded;
+.bg-black-alt {
+    background: #191919;
+}
+.text-black-alt {
+    color: #191919;
+}
+.border-black-alt {
+    border-color: #191919;
 }
 
-.hero {
-    @apply py-20;
+.gradient {
+    background: linear-gradient(90deg, #26b748 0%, #a7de62 100%);
 }
 
-.title {
-    @apply text-5xl text-center;
-    color: #333;
-    line-height: 1.15;
+.icon-search {
+    top: 0.375rem;
+    left: 1.75rem;
+}
+
+@import url("https://fonts.googleapis.com/css?family=Karla:400,700&display=swap");
+
+.font-family-karla {
+    font-family: karla;
 }
 
 @tailwind utilities;
