@@ -1,6 +1,14 @@
+import React, { useState } from 'react'
 import Head from 'next/head'
 
-export default function Login() {
+function Login() {
+    const [user, setUser] = useState('')
+    const [password, setPassword] = useState('')
+
+    const onSubmitHandler = (e) => {
+        e.preventDefault();
+        alert('post')
+    }
     return (
         <div className="bg-white font-family-karla h-screen">
             <Head>
@@ -14,16 +22,14 @@ export default function Login() {
                     </div>
                     <div className="flex flex-col justify-center md:justify-start my-auto pt-8 md:pt-0 px-8 md:px-24 lg:px-32">
                         <p className="text-center text-3xl">Welcome.</p>
-                        <form className="flex flex-col pt-3 md:pt-8" >
+                        <form onSubmit={onSubmitHandler} className="flex flex-col pt-3 md:pt-8" >
                             <div className="flex flex-col pt-4">
                                 <label className="text-lg">Email</label>
-                                <input type="email" id="email" placeholder="your@email.com"
-                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
+                                <input value={user} onChange={(e) => setUser(e.target.value)} type="text" id="email" placeholder="your@email.com" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
                             </div>
                             <div className="flex flex-col pt-4">
                                 <label className="text-lg">Password</label>
-                                <input type="password" id="password" placeholder="Password"
-                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
+                                <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" id="password" placeholder="Password" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
                             </div>
 
                             <input type="submit" value="Log In"
@@ -41,3 +47,4 @@ export default function Login() {
 
 
 
+export default Login
