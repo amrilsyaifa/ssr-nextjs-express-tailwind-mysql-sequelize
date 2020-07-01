@@ -16,12 +16,12 @@ const UsersRoles = model.UsersRoles;
 module.exports = {
     login_with_email: (req, res) => {
         const {
-            email,
+            user,
             password,
         } = req.body;
         const passwordFromBody = password
         Users.findOne({
-            where: { email }, include: [{
+            where: { email: user }, include: [{
                 model: Roles,
                 attributes: ['id', 'name'],
                 through: {
@@ -118,12 +118,12 @@ module.exports = {
     },
     login_with_phone: (req, res) => {
         const {
-            phone_number,
+            user,
             password,
         } = req.body;
         const passwordFromBody = password
         Users.findOne({
-            where: { phone_number }, include: [{
+            where: { phone_number: user }, include: [{
                 model: Roles,
                 attributes: ['id', 'name'],
                 through: {
@@ -220,12 +220,12 @@ module.exports = {
     },
     login_with_username: (req, res) => {
         const {
-            username,
+            user,
             password,
         } = req.body;
         const passwordFromBody = password
         Users.findOne({
-            where: { username }, include: [{
+            where: { username: user }, include: [{
                 model: Roles,
                 attributes: ['id', 'name'],
                 through: {

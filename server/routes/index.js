@@ -18,7 +18,7 @@ router.post('/login-with-username', AuthenticationController.login_with_username
 
 router.post('/add-roles', RolesController.addRoles);
 
-router.get('/generate-otp-auth', VerifyToken, OTPController.generateOTP);
+router.post('/generate-otp-auth', VerifyToken, OTPController.generateOTP);
 router.post('/validate-otp-auth', VerifyToken, OTPController.validateOTP);
 
 router.post('/check-user-active', VerifyToken, AuthenticationController.checkUserActive);
