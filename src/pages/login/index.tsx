@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 import Head from 'next/head'
 
 function Login() {
@@ -7,7 +8,18 @@ function Login() {
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        alert('post')
+        const data = { user, password }
+        axios.post('http://localhost:3000/api/v1/di-ingat/login-with-email', data, {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+            .then(function (response) {
+                console.log('isi response ', response);
+            })
+            .catch(function (error) {
+                console.log('isi error ', error);
+            });
     }
     return (
         <div className="bg-white font-family-karla h-screen">
@@ -24,7 +36,7 @@ function Login() {
                         <p className="text-center text-3xl">Welcome.</p>
                         <form onSubmit={onSubmitHandler} className="flex flex-col pt-3 md:pt-8" >
                             <div className="flex flex-col pt-4">
-                                <label className="text-lg">Email</label>
+                                <label className="text-lg">Email / No Handphone / Username</label>
                                 <input value={user} onChange={(e) => setUser(e.target.value)} type="text" id="email" placeholder="your@email.com" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
                             </div>
                             <div className="flex flex-col pt-4">
@@ -48,3 +60,4 @@ function Login() {
 
 
 export default Login
+

@@ -16,15 +16,29 @@ export default function Register() {
                         <p className="text-center text-3xl">Join Us.</p>
                         <form className="flex flex-col pt-3 md:pt-8" >
                             <div className="flex flex-col pt-4">
-                                <label className="text-lg">Name</label>
+                                <label className="text-lg">No Handphone</label>
                                 <input type="text" id="name" placeholder="John Smith" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
                             </div>
-
                             <div className="flex flex-col pt-4">
                                 <label className="text-lg">Email</label>
                                 <input type="email" id="email" placeholder="your@email.com" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
                             </div>
-
+                            <div className="flex flex-col pt-4">
+                                <label className="text-lg">Alamat</label>
+                                <input type="text" id="name" placeholder="John Smith" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
+                            </div>
+                            <div className="flex flex-col pt-4">
+                                <label className="text-lg">Nama Lengkap</label>
+                                <input type="text" id="name" placeholder="John Smith" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
+                            </div>
+                            <div className="flex flex-col pt-4">
+                                <label className="text-lg">Username</label>
+                                <input type="text" id="name" placeholder="John Smith" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
+                            </div>
+                            <div className="flex flex-col pt-4">
+                                <label className="text-lg">No KTP</label>
+                                <input type="text" id="name" placeholder="John Smith" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />
+                            </div>
                             <div className="flex flex-col pt-4">
                                 <label className="text-lg">Password</label>
                                 <input type="password" id="password" placeholder="Password" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" />

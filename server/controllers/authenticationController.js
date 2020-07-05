@@ -70,11 +70,20 @@ module.exports = {
                                     }
                                 }]
                             }).then((dataFinish) => {
+                                res.cookie('auth', token, {
+                                    httpOnly: true,
+                                    secure: process.env.NODE_ENV === 'production' ? true : false,
+                                    sameSite: 'strict',
+                                    maxAge: 365 * 24 * 60 * 60 * 1000,
+                                    // path
+                                })
+
+
                                 res.status(200).send({
                                     'status': 'success',
                                     'messages': '',
                                     'data': dataFinish,
-                                    'token': token,
+                                    // 'token': token,
 
                                 });
                             }).catch((error) => {
@@ -172,11 +181,18 @@ module.exports = {
                                     }
                                 }]
                             }).then((dataFinish) => {
+                                res.cookie('auth', token, {
+                                    httpOnly: true,
+                                    secure: process.env.NODE_ENV === 'production' ? true : false,
+                                    sameSite: 'strict',
+                                    maxAge: 365 * 24 * 60 * 60 * 1000,
+                                    // path
+                                })
                                 res.status(200).send({
                                     'status': 'success',
                                     'messages': '',
                                     'data': dataFinish,
-                                    'token': token,
+                                    // 'token': token,
 
                                 });
                             }).catch((error) => {
@@ -274,11 +290,18 @@ module.exports = {
                                     }
                                 }]
                             }).then((dataFinish) => {
+                                res.cookie('auth', token, {
+                                    httpOnly: true,
+                                    secure: process.env.NODE_ENV === 'production' ? true : false,
+                                    sameSite: 'strict',
+                                    maxAge: 365 * 24 * 60 * 60 * 1000,
+                                    // path
+                                })
                                 res.status(200).send({
                                     'status': 'success',
                                     'messages': '',
                                     'data': dataFinish,
-                                    'token': token,
+                                    // 'token': token,
 
                                 });
                             }).catch((error) => {

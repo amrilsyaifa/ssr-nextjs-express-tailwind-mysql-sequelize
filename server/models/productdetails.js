@@ -9,8 +9,9 @@ module.exports = (sequelize, DataTypes) => {
     best_price: DataTypes.INTEGER,
     description: DataTypes.STRING
   }, {});
-  ProductDetails.associate = function(models) {
+  ProductDetails.associate = function (models) {
     // associations can be defined here
+    ProductDetails.belongsTo(models.ProductTypes)
   };
   return ProductDetails;
 };

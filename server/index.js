@@ -2,6 +2,7 @@ require('dotenv').config()
 require('./xmpp')
 const express = require('express')
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 
 const port = parseInt(process.env.PORT, 10) || 3000
 const APP_URL = process.env.APP_URL
@@ -18,6 +19,7 @@ app.prepare().then(() => {
     const server = express()
     server.use(bodyParser.urlencoded({ extended: true }))
     server.use(bodyParser.json())
+    server.use(cookieParser())
 
 
 

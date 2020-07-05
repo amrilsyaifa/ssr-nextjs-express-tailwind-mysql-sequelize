@@ -1,0 +1,27 @@
+import { NextPageContext } from 'next'
+import fetch from 'isomorphic-unfetch'
+import Router from 'next/router'
+
+export const getApi = async (url: string, ctx: NextPageContext) => {
+    const cookie = ctx.req?.headers.cookie
+    const resp = await fetch(url, {
+        headers: {
+            cookie: cookie!
+        }
+    })
+    if (resp.status === 401 && !ctx.req) {
+        Router.replace('/login')
+        return {}
+    }
+
+    if (resp.status === 401 && ctx.req) {
+        ctx.res?.writeHead(302, {
+            Location: 'http://localhost:3000/login'
+        })
+        ctx.res?.end()
+        return
+    }
+
+    const respJson = await resp.json()
+    return respJson
+}

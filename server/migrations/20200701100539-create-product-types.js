@@ -25,6 +25,10 @@ module.exports = {
         unique: true,
         allowNull: false,
       },
+      photo: {
+        type: Sequelize.STRING,
+        defaultValue: 'default-image-product.jpg'
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
