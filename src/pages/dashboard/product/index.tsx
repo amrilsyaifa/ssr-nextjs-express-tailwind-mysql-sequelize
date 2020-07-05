@@ -19,7 +19,7 @@ export default function Product() {
           {/* <div className="flex-row flex">
             <div className="ml-5">Produk</div>
           </div> */}
-          <table className="table-auto">
+          <table className="table-auto w-full">
             <thead>
               <tr>
                 <th className="border px-4 py-2">Title</th>
