@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import fetch from "isomorphic-unfetch";
 import Head from "next/head";
+import { withRouter } from "next/router";
+import { APIURL } from "../../api";
 
-function Login() {
+function Login({ router }) {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
 
@@ -10,7 +12,7 @@ function Login() {
     e.preventDefault();
     const data = { user, password };
 
-    fetch("http://localhost:3000/api/v1/di-ingat/login-with-email", {
+    fetch(APIURL + "/login-with-email", {
       method: "post",
       body: JSON.stringify(data),
       headers: {
@@ -21,6 +23,9 @@ function Login() {
       .then((res) => res.json())
       .then((res) => {
         console.log("Fetch login result:", res);
+        if (res.status === "success") {
+          router.push("/dashboard");
+        }
       })
       .catch((err) => {
         console.error("Fetch login ERROR:", err);
@@ -89,4 +94,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default withRouter(Login);

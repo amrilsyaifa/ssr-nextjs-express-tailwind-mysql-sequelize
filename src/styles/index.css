@@ -1,23 +1,52 @@
 @tailwind base;
 @tailwind components;
 
-.bg-black-alt {
-  background: #191919;
+/* Dashboard */
+
+@import url("https://fonts.googleapis.com/css?family=Karla:400,700&display=swap");
+
+.font-family-karla {
+  font-family: karla;
 }
-.text-black-alt {
-  color: #191919;
+
+.bg-sidebar {
+  background: #3d68ff;
 }
-.border-black-alt {
-  border-color: #191919;
+
+.cta-btn {
+  color: #3d68ff;
+}
+
+.upgrade-btn {
+  background: #1947ee;
+}
+
+.upgrade-btn:hover {
+  background: #0038fd;
+}
+
+.active-nav-link {
+  background: #1947ee;
+}
+
+.nav-item:hover {
+  background: #1947ee;
+}
+
+.account-link:hover {
+  background: #3d68ff;
 }
 
 .gradient {
   background: linear-gradient(90deg, #26b748 0%, #a7de62 100%);
 }
 
-.icon-search {
-  top: 0.375rem;
-  left: 1.75rem;
+.btn-gradient {
+  background-image: linear-gradient(to right, #4facfe 0%, #4ad5ff 100%);
+}
+
+.btn-gradient-warning {
+  background-image: linear-gradient(to right, #fe634f 0%, #f3b4a9 100%);
 }
 
 @import url("https://fonts.googleapis.com/css?family=Karla:400,700&display=swap");
@@ -31,43 +60,234 @@
   font-family: "nunito", font-sans;
 }
 
-.border-b-1 {
-  border-bottom-width: 1px;
-}
-
-.border-l-1 {
-  border-left-width: 1px;
-}
-
-hover\:border-none:hover {
-  border-style: none;
-}
-
-#sidebar {
+.sidebar-hide {
   transition: ease-in-out all 0.3s;
-  z-index: 9999;
 }
 
-#sidebar span {
+.sidebar-hide span {
   opacity: 0;
   position: absolute;
-  transition: ease-in-out all 0.1s;
+  transition: ease-in-out all 0.3s;
 }
 
-#sidebar:hover {
+.sidebar-show {
   width: 150px;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  transition: ease-in-out all 0.3s;
   /*shadow-2xl*/
 }
 
-#sidebar:hover span {
+.sidebar-show span {
   opacity: 1;
+  transition: ease-in-out all 0.3s;
 }
 
 .table-custom {
   width: 100%;
   padding-top: 1em;
   padding-bottom: 1em;
+}
+
+.modal {
+  transition: opacity 0.25s ease;
+}
+
+.modal-active {
+  overflow-x: hidden;
+  overflow-y: visible !important;
+}
+
+/*Banner open/load animation*/
+.alert-banner {
+  -webkit-animation: slide-in-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: slide-in-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+/*Banner close animation*/
+.alert-banner input:checked ~ * {
+  -webkit-animation: slide-out-top 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+  animation: slide-out-top 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+}
+
+/*Footer open/load animation*/
+.alert-footer {
+  -webkit-animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+/*Footer close animation*/
+.alert-footer input:checked ~ * {
+  -webkit-animation: slide-out-bottom 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+  animation: slide-out-bottom 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+}
+
+/*Toast open/load animation*/
+.alert-toast {
+  -webkit-animation: slide-in-right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: slide-in-right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+/*Toast close animation*/
+.alert-toast input:checked ~ * {
+  -webkit-animation: fade-out-right 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: fade-out-right 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+/* -------------------------------------------------------------
+ * Animations generated using Animista * w: http://animista.net, 
+ * ---------------------------------------------------------- */
+
+@-webkit-keyframes slide-in-top {
+  0% {
+    -webkit-transform: translateY(-1000px);
+    transform: translateY(-1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes slide-in-top {
+  0% {
+    -webkit-transform: translateY(-1000px);
+    transform: translateY(-1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@-webkit-keyframes slide-out-top {
+  0% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateY(-1000px);
+    transform: translateY(-1000px);
+    opacity: 0;
+  }
+}
+@keyframes slide-out-top {
+  0% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateY(-1000px);
+    transform: translateY(-1000px);
+    opacity: 0;
+  }
+}
+@-webkit-keyframes slide-in-bottom {
+  0% {
+    -webkit-transform: translateY(1000px);
+    transform: translateY(1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes slide-in-bottom {
+  0% {
+    -webkit-transform: translateY(1000px);
+    transform: translateY(1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@-webkit-keyframes slide-out-bottom {
+  0% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateY(1000px);
+    transform: translateY(1000px);
+    opacity: 0;
+  }
+}
+@keyframes slide-out-bottom {
+  0% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateY(1000px);
+    transform: translateY(1000px);
+    opacity: 0;
+  }
+}
+@-webkit-keyframes slide-in-right {
+  0% {
+    -webkit-transform: translateX(1000px);
+    transform: translateX(1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes slide-in-right {
+  0% {
+    -webkit-transform: translateX(1000px);
+    transform: translateX(1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@-webkit-keyframes fade-out-right {
+  0% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateX(50px);
+    transform: translateX(50px);
+    opacity: 0;
+  }
+}
+@keyframes fade-out-right {
+  0% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateX(50px);
+    transform: translateX(50px);
+    opacity: 0;
+  }
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
 }
 
 @tailwind utilities;
