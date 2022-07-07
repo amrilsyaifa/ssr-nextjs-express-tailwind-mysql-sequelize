@@ -17,7 +17,7 @@
     "isomorphic-unfetch": "^3.0.0",
     "jsonwebtoken": "^8.5.1",
     "match-sorter": "^4.1.0",
-    "moment": "^2.27.0",
+    "moment": "^2.29.4",
     "mysql2": "^2.1.0",
     "namor": "^2.0.2",
     "next": "9.4.4",
